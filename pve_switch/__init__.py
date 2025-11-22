@@ -319,7 +319,6 @@ async def cmd_help(message: Message):
         "/status - Show current status of VMs and Lock\n"
         "/switch_linux - Switch to Linux VM\n"
         "/switch_windows - Switch to Windows VM\n"
-        "/switch - Toggle active VM based on current state\n"
         "/lock - Prevent API/Bot from switching VMs\n"
         "/unlock - Allow switching VMs\n"
         "/help - Show this help message"
@@ -337,20 +336,6 @@ async def cmd_linux(message: Message, vm_controller: VMController):
 async def cmd_windows(message: Message, vm_controller: VMController):
     # perform_switch handles its own Telegram updates (progress/error)
     await vm_controller.perform_switch("windows")
-
-
-@router.message(Command("switch"), IsAdminChat())
-async def cmd_switch(message: Message, vm_controller: VMController):
-    """Intelligently toggles based on current state."""
-    status = vm_controller.get_full_status()
-    if status["linux"] == "running":
-        await cmd_windows(message, vm_controller)
-    elif status["windows"] == "running":
-        await cmd_linux(message, vm_controller)
-    else:
-        await message.answer(
-            "⚠️ Both VMs are stopped. Use specific command to start one."
-        )
 
 
 async def setup_bot_dispatcher(

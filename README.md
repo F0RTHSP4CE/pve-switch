@@ -93,7 +93,6 @@ A pre-built image is available at `ghcr.io/f0rthsp4ce/pve-switch`.
 Send these commands to your bot:
 
 -   `/status`: Check which VM is running.
--   `/switch`: Toggle to the other VM.
 -   `/switch_linux`: Force switch to Linux.
 -   `/switch_windows`: Force switch to Windows.
 -   `/lock`: Disable switching.
