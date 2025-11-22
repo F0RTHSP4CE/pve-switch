@@ -1,0 +1,27 @@
+[project]
+name = "pve-switch"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "aiogram>=3.22.0",
+    "litestar>=2.18.0",
+    "proxmoxer>=2.2.0",
+    "requests>=2.32.5",
+    "setuptools>=80.9.0",
+    "uvicorn>=0.38.0",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.18.2",
+    "ruff>=0.14.6",
+]
+
+[project.scripts]
+pve-switch = "pve_switch.__init__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
